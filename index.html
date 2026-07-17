@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofertas con Descuento — Productos Recomendados</title>
+<style>
+:root{
+  --azul-fondo:#071B33;
+  --azul-tarjeta:#0B2A4A;
+  --azul-borde:#1E4A78;
+  --amarillo:#FFD400;
+  --amarillo-osc:#E6B800;
+  --blanco:#FFFFFF;
+  --gris-claro:#B9C9DD;
+  --verde:#38D66B;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--azul-fondo);color:var(--blanco);font-size:16px;line-height:1.5;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ================= BANNER ================= */
+.banner{
+  min-height:340px;
+  background:url("https://i.ibb.co/7xpZZQ92/Chat-GPT-Image-17-jul-2026-09-59-52-a-m.png") center/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;text-align:center;padding:40px 20px;
+}
+.banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(to bottom, transparent, var(--azul-fondo));}
+.banner-contenido{position:relative;z-index:2;}
+.banner h1{font-size:clamp(30px,6vw,54px);font-weight:900;letter-spacing:-.01em;
+  text-shadow:0 4px 18px rgba(0,0,0,.6);}
+.banner h1 span{color:var(--amarillo);}
+.banner p{margin-top:10px;font-size:clamp(15px,2.5vw,19px);color:#EAF1FA;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+.chispa{display:inline-block;animation:brillar 1.8s ease-in-out infinite;}
+
+/* ================= PANEL DE PRODUCTOS ================= */
+.panel{
+  background:url("https://i.ibb.co/VcmG7ZCx/Chat-GPT-Image-17-jul-2026-10-00-12-a-m.png") center top/cover no-repeat fixed;
+  padding:50px 18px 70px;position:relative;
+}
+.panel::before{content:"";position:absolute;inset:0;background:rgba(7,27,51,.35);}
+.rejilla{
+  position:relative;z-index:2;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px;
+}
+
+/* ================= TARJETA DE PRODUCTO ================= */
+.producto{
+  background:linear-gradient(165deg, #10345C 0%, var(--azul-tarjeta) 55%, #081F3A 100%);
+  border:1px solid var(--azul-borde);
+  border-radius:18px;
+  padding:18px 16px 20px;
+  position:relative;
+  display:flex;flex-direction:column;gap:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  animation:flotar 5s ease-in-out infinite;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.producto:nth-child(2n){animation-delay:1.2s;}
+.producto:nth-child(3n){animation-delay:2.4s;}
+.producto:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 0 2px var(--amarillo);animation-play-state:paused;}
+.corona{position:absolute;top:12px;left:14px;font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));animation:brillar 2.4s ease-in-out infinite;}
+.insignia{
+  position:absolute;top:12px;right:14px;
+  background:var(--amarillo);color:#062246;
+  font-weight:900;font-size:13px;line-height:1.1;
+  padding:7px 10px;border-radius:10px;text-align:center;
+  box-shadow:0 3px 10px rgba(255,212,0,.4);
+  animation:latir 2s ease-in-out infinite;
+}
+.insignia small{display:block;font-size:9px;font-weight:800;letter-spacing:.04em;}
+.foto{
+  height:170px;display:flex;align-items:center;justify-content:center;
+  margin-top:26px;
+}
+.foto img{max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5));transition:transform .2s ease;}
+.producto:hover .foto img{transform:scale(1.07);}
+.nombre{font-weight:900;font-size:17px;text-align:center;}
+.especs{list-style:none;font-size:13px;color:var(--gris-claro);}
+.especs li{padding:3px 0;display:flex;gap:7px;align-items:flex-start;}
+.especs li::before{content:"✔";color:var(--verde);font-weight:900;flex-shrink:0;}
+.precios{text-align:center;margin-top:2px;}
+.precio-viejo{color:#7E93AC;text-decoration:line-through;font-size:14px;margin-right:8px;}
+.precio-nuevo{color:var(--amarillo);font-weight:900;font-size:28px;text-shadow:0 2px 10px rgba(255,212,0,.35);}
+.btn-oferta{
+  display:block;text-align:center;
+  background:linear-gradient(180deg, var(--amarillo), var(--amarillo-osc));
+  color:#062246;font-weight:900;font-size:13.5px;line-height:1.25;
+  padding:12px 14px;border-radius:12px;
+  box-shadow:0 5px 16px rgba(255,212,0,.35);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn-oferta:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(255,212,0,.55);}
+.btn-oferta:active{transform:translateY(0);}
+.btn-oferta span{display:block;font-size:11px;font-weight:800;opacity:.85;}
+
+/* ================= BURBUJAS FLOTANTES DECORATIVAS ================= */
+.burbujas{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.burbujas i{
+  position:absolute;display:block;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, rgba(255,212,0,.35), rgba(255,212,0,.05));
+  animation:subir 12s linear infinite;bottom:-80px;
+}
+.burbujas i:nth-child(1){left:6%;width:26px;height:26px;animation-duration:11s;}
+.burbujas i:nth-child(2){left:22%;width:14px;height:14px;animation-duration:14s;animation-delay:2s;}
+.burbujas i:nth-child(3){left:45%;width:34px;height:34px;animation-duration:16s;animation-delay:4s;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.30), rgba(56,214,107,.04));}
+.burbujas i:nth-child(4){left:68%;width:18px;height:18px;animation-duration:12s;animation-delay:1s;}
+.burbujas i:nth-child(5){left:84%;width:28px;height:28px;animation-duration:15s;animation-delay:6s;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.30), rgba(120,190,255,.04));}
+.burbujas i:nth-child(6){left:33%;width:12px;height:12px;animation-duration:10s;animation-delay:7s;}
+.burbujas i:nth-child(7){left:58%;width:22px;height:22px;animation-duration:13s;animation-delay:9s;background:radial-gradient(circle at 30% 30%, rgba(255,110,199,.28), rgba(255,110,199,.04));}
+
+/* ================= PIE ================= */
+footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;background:#051524;}
+
+/* ================= ANIMACIONES ================= */
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes latir{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+@keyframes brillar{0%,100%{filter:brightness(1) drop-shadow(0 0 0 rgba(255,212,0,0))}50%{filter:brightness(1.35) drop-shadow(0 0 8px rgba(255,212,0,.7))}}
+@keyframes subir{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(-105vh);opacity:0}}
+
+@media (max-width:640px){
+  .panel{background-attachment:scroll;padding:34px 14px 54px;}
+  .rejilla{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+  .producto{padding:14px 12px 16px;border-radius:14px;}
+  .foto{height:120px;margin-top:30px;}
+  .nombre{font-size:14px;}
+  .especs{font-size:11.5px;}
+  .precio-nuevo{font-size:22px;}
+  .btn-oferta{font-size:11.5px;padding:10px 10px;}
+  .corona{font-size:18px;}
+  .insignia{font-size:11px;padding:5px 8px;}
+}
+@media (prefers-reduced-motion:reduce){ *{animation:none !important;transition:none !important;} }
+</style>
+</head>
+<body>
+
+<!-- ================= BANNER ================= -->
+<header class="banner">
+  <div class="banner-contenido">
+    <h1><span class="chispa">👑</span> Ofertas con <span>Descuento</span></h1>
+    <p>Productos recomendados con precios especiales — entra al link y aprovecha antes de que termine.</p>
+  </div>
+</header>
+
+<!-- ================= PRODUCTOS ================= -->
+<main class="panel">
+  <div class="burbujas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="rejilla">
+
+    <!-- ====== PRODUCTO 1 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>20%</span>
+      <div class="foto"><img src="producto-1.png" alt="Cámara Canon EOS R50"></div>
+      <h2 class="nombre">Cámara Canon EOS R50</h2>
+      <ul class="especs">
+        <li>24.2 MP de alta resolución</li>
+        <li>Grabación 4K Ultra HD</li>
+        <li>Conectividad Wi-Fi y Bluetooth</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$18,999</span><span class="precio-nuevo">$15,199</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <!-- ====== PRODUCTO 2 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>30%</span>
+      <div class="foto"><img src="producto-2.png" alt="Audífonos Sony WH-CH720N"></div>
+      <h2 class="nombre">Audífonos Sony WH-CH720N</h2>
+      <ul class="especs">
+        <li>Cancelación de ruido activa</li>
+        <li>Batería de hasta 35 horas</li>
+        <li>Sonido nítido y envolvente</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$2,899</span><span class="precio-nuevo">$2,029</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <!-- ====== PRODUCTO 3 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>25%</span>
+      <div class="foto"><img src="producto-3.png" alt="Tenis Nike Air Max 270"></div>
+      <h2 class="nombre">Tenis Nike Air Max 270</h2>
+      <ul class="especs">
+        <li>Diseño moderno y ligero</li>
+        <li>Máxima amortiguación</li>
+        <li>Ideales para uso diario</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$3,599</span><span class="precio-nuevo">$2,699</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <!-- ====== PRODUCTO 4 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>15%</span>
+      <div class="foto"><img src="producto-4.png" alt="Funda para laptop 15.6 pulgadas"></div>
+      <h2 class="nombre">Funda para Laptop 15.6"</h2>
+      <ul class="especs">
+        <li>Material resistente al agua</li>
+        <li>Acolchado antishock</li>
+        <li>Diseño elegante y minimalista</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$699</span><span class="precio-nuevo">$594</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <!-- ====== PRODUCTO 5 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>20%</span>
+      <div class="foto"><img src="producto-5.png" alt="Smartwatch Amazfit Bip U Pro"></div>
+      <h2 class="nombre">Smartwatch Amazfit Bip U Pro</h2>
+      <ul class="especs">
+        <li>Medición de oxígeno en sangre</li>
+        <li>Más de 60 modos deportivos</li>
+        <li>Hasta 9 días de batería</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$1,999</span><span class="precio-nuevo">$1,599</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <!-- ====== PRODUCTO 6 ====== -->
+    <article class="producto">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>35%</span>
+      <div class="foto"><img src="producto-6.png" alt="Audífonos JBL Tune 130NC"></div>
+      <h2 class="nombre">Audífonos JBL Tune 130NC</h2>
+      <ul class="especs">
+        <li>Cancelación de ruido activa</li>
+        <li>Sonido JBL Pure Bass</li>
+        <li>Hasta 40 horas de batería</li>
+      </ul>
+      <div class="precios"><span class="precio-viejo">$1,699</span><span class="precio-nuevo">$1,099</span></div>
+      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  Los precios y descuentos pueden cambiar sin previo aviso según la tienda. Este sitio recomienda productos mediante enlaces de afiliado.
+</footer>
+
+</body>
+</html>
