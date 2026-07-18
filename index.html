@@ -49,6 +49,66 @@ img{max-width:100%;display:block;}
   display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px;
 }
 
+/* ================= BARRA DE CATEGORÍAS ================= */
+.categorias{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0A3AA8 0%,#1450D4 50%,#0A3AA8 100%);
+  padding:26px 18px 30px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45), inset 0 -3px 0 rgba(255,212,0,.35);
+}
+.categorias h2{
+  position:relative;z-index:2;text-align:center;
+  font-family:"Bangers", system-ui, sans-serif;font-weight:400;
+  font-size:clamp(24px,4.5vw,38px);letter-spacing:.06em;
+  text-shadow:2px 2px 0 #062246, 0 4px 14px rgba(0,0,0,.6);
+  margin-bottom:16px;animation:balanceo 3.5s ease-in-out infinite;
+}
+.filtros{
+  position:relative;z-index:2;
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+  max-width:900px;margin:0 auto;
+}
+.filtro{
+  padding:10px 18px;border-radius:99px;
+  background:rgba(255,255,255,.12);
+  border:2px solid rgba(255,255,255,.35);
+  color:#fff;font-weight:900;font-size:14px;
+  backdrop-filter:blur(2px);
+  transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
+  animation:flotar 4s ease-in-out infinite;
+}
+.filtro:nth-child(2){animation-delay:.5s}
+.filtro:nth-child(3){animation-delay:1s}
+.filtro:nth-child(4){animation-delay:1.5s}
+.filtro:nth-child(5){animation-delay:2s}
+.filtro:nth-child(6){animation-delay:2.5s}
+.filtro:hover{transform:translateY(-4px) scale(1.06);background:rgba(255,255,255,.22);}
+.filtro.activo{background:var(--amarillo);border-color:var(--amarillo);color:#062246;box-shadow:0 6px 18px rgba(255,212,0,.5);animation-play-state:paused;}
+.filtro.super{
+  background:linear-gradient(180deg,#FF3B3B,#C81E1E);
+  border-color:#FF6B6B;color:#fff;
+  box-shadow:0 0 16px rgba(255,59,59,.65);
+  animation:flotar 4s ease-in-out infinite, fuego 1.6s ease-in-out infinite;
+}
+.filtro.super.activo{background:linear-gradient(180deg,#FF5252,#E02020);border-color:#FFD400;box-shadow:0 0 22px rgba(255,59,59,.9), 0 0 0 2px var(--amarillo);color:#fff;}
+@keyframes fuego{0%,100%{box-shadow:0 0 12px rgba(255,59,59,.55)}50%{box-shadow:0 0 26px rgba(255,59,59,.95)}}
+@keyframes balanceo{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+.burbujas-cat{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.burbujas-cat i{
+  position:absolute;display:block;border-radius:50%;
+  animation:subir linear infinite;
+  box-shadow:0 0 10px 2px var(--halo);
+  background:radial-gradient(circle at 30% 30%, var(--c1), var(--c2));
+}
+/* etiqueta de categoría en la tarjeta */
+.etq-cat{
+  align-self:center;font-size:11px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;
+  background:rgba(255,255,255,.10);border:1px solid var(--azul-borde);color:var(--gris-claro);
+  padding:4px 12px;border-radius:99px;
+}
+.etq-cat.super{background:linear-gradient(180deg,#FF3B3B,#C81E1E);border-color:#FF6B6B;color:#fff;box-shadow:0 0 10px rgba(255,59,59,.55);}
+.producto.oculto{display:none;}
+
 /* ================= TARJETA DE PRODUCTO ================= */
 .producto{
   background:linear-gradient(165deg, #10345C 0%, var(--azul-tarjeta) 55%, #081F3A 100%);
@@ -144,6 +204,9 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 
 @media (max-width:640px){
   .panel{background-attachment:scroll;padding:34px 14px 54px;}
+  .categorias{padding:20px 10px 24px;}
+  .filtros{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:4px 6px 10px;-webkit-overflow-scrolling:touch;}
+  .filtro{flex-shrink:0;font-size:13px;padding:9px 15px;}
   .rejilla{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
   .producto{padding:14px 12px 16px;border-radius:14px;}
   .foto{height:120px;margin-top:30px;}
@@ -168,13 +231,27 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
   </div>
 </header>
 
+<!-- ================= CATEGORÍAS ================= -->
+<section class="categorias">
+  <div class="burbujas-cat" id="burbujas-cat"></div>
+  <h2>👑 Categorías</h2>
+  <div class="filtros">
+    <button class="filtro activo" data-cat="todos" onclick="filtrar(this)">Todos</button>
+    <button class="filtro" data-cat="calzado" onclick="filtrar(this)">👟 Calzado</button>
+    <button class="filtro" data-cat="tecnologia" onclick="filtrar(this)">📱 Tecnología</button>
+    <button class="filtro" data-cat="cotidiano" onclick="filtrar(this)">🏠 Uso cotidiano</button>
+    <button class="filtro" data-cat="mascotas" onclick="filtrar(this)">🐶 Mascotas</button>
+    <button class="filtro super" data-cat="super" onclick="filtrar(this)">🔥 SUPER OFERTAS</button>
+  </div>
+</section>
+
 <!-- ================= PRODUCTOS ================= -->
 <main class="panel">
   <div class="burbujas" id="burbujas"></div>
   <div class="rejilla">
 
     <!-- ====== PRODUCTO 1 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="tecnologia">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>20%</span>
       <div class="foto"><img src="producto-1.png" alt="Cámara Canon EOS R50"></div>
@@ -184,12 +261,13 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Grabación 4K Ultra HD</li>
         <li>Conectividad Wi-Fi y Bluetooth</li>
       </ul>
+      <span class="etq-cat">📱 Tecnología</span>
       <div class="precios"><span class="precio-viejo">$18,999</span><span class="precio-nuevo">$15,199</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
     <!-- ====== PRODUCTO 2 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="tecnologia">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>30%</span>
       <div class="foto"><img src="producto-2.png" alt="Audífonos Sony WH-CH720N"></div>
@@ -199,12 +277,13 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Batería de hasta 35 horas</li>
         <li>Sonido nítido y envolvente</li>
       </ul>
+      <span class="etq-cat">📱 Tecnología</span>
       <div class="precios"><span class="precio-viejo">$2,899</span><span class="precio-nuevo">$2,029</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
     <!-- ====== PRODUCTO 3 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="calzado">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>25%</span>
       <div class="foto"><img src="producto-3.png" alt="Tenis Nike Air Max 270"></div>
@@ -214,12 +293,13 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Máxima amortiguación</li>
         <li>Ideales para uso diario</li>
       </ul>
+      <span class="etq-cat">👟 Calzado</span>
       <div class="precios"><span class="precio-viejo">$3,599</span><span class="precio-nuevo">$2,699</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
     <!-- ====== PRODUCTO 4 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="cotidiano">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>15%</span>
       <div class="foto"><img src="producto-4.png" alt="Funda para laptop 15.6 pulgadas"></div>
@@ -229,12 +309,13 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Acolchado antishock</li>
         <li>Diseño elegante y minimalista</li>
       </ul>
+      <span class="etq-cat">🏠 Uso cotidiano</span>
       <div class="precios"><span class="precio-viejo">$699</span><span class="precio-nuevo">$594</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
     <!-- ====== PRODUCTO 5 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="tecnologia">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>20%</span>
       <div class="foto"><img src="producto-5.png" alt="Smartwatch Amazfit Bip U Pro"></div>
@@ -244,12 +325,13 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Más de 60 modos deportivos</li>
         <li>Hasta 9 días de batería</li>
       </ul>
+      <span class="etq-cat">📱 Tecnología</span>
       <div class="precios"><span class="precio-viejo">$1,999</span><span class="precio-nuevo">$1,599</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
     <!-- ====== PRODUCTO 6 ====== -->
-    <article class="producto">
+    <article class="producto" data-cat="super">
       <span class="corona">👑</span>
       <span class="insignia"><small>AHORRA</small>35%</span>
       <div class="foto"><img src="producto-6.png" alt="Audífonos JBL Tune 130NC"></div>
@@ -259,6 +341,7 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
         <li>Sonido JBL Pure Bass</li>
         <li>Hasta 40 horas de batería</li>
       </ul>
+      <span class="etq-cat super">🔥 Super oferta</span>
       <div class="precios"><span class="precio-viejo">$1,699</span><span class="precio-nuevo">$1,099</span></div>
       <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
@@ -271,6 +354,14 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 </footer>
 
 <script>
+function filtrar(btn){
+  document.querySelectorAll(".filtro").forEach(b=>b.classList.remove("activo"));
+  btn.classList.add("activo");
+  const cat=btn.dataset.cat;
+  document.querySelectorAll(".producto").forEach(p=>{
+    p.classList.toggle("oculto", cat!=="todos" && p.dataset.cat!==cat);
+  });
+}
 (function(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const cont=document.getElementById("burbujas");
@@ -279,21 +370,25 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
     ["rgba(56,214,107,.55)","rgba(56,214,107,.08)","rgba(56,214,107,.45)"],/* verde */
     ["rgba(120,190,255,.60)","rgba(120,190,255,.08)","rgba(120,190,255,.5)"]/* azul */
   ];
-  for(let k=0;k<60;k++){
-    const b=document.createElement("i");
-    const c=colores[k%3];
-    const tam=10+Math.random()*30;              /* 10 a 40 px */
-    b.style.setProperty("--c1",c[0]);
-    b.style.setProperty("--c2",c[1]);
-    b.style.setProperty("--halo",c[2]);
-    b.style.width=tam+"px";
-    b.style.height=tam+"px";
-    b.style.left=(Math.random()*98)+"%";
-    b.style.bottom=(-60+Math.random()*100)+"%"; /* nacen desde abajo hasta arriba del panel */
-    b.style.animationDuration=(6+Math.random()*9)+"s";
-    b.style.animationDelay=(Math.random()*10)+"s";
-    cont.appendChild(b);
+  function sembrar(contenedor,cantidad,rapidez){
+    for(let k=0;k<cantidad;k++){
+      const b=document.createElement("i");
+      const c=colores[k%3];
+      const tam=10+Math.random()*30;
+      b.style.setProperty("--c1",c[0]);
+      b.style.setProperty("--c2",c[1]);
+      b.style.setProperty("--halo",c[2]);
+      b.style.width=tam+"px";
+      b.style.height=tam+"px";
+      b.style.left=(Math.random()*98)+"%";
+      b.style.bottom=(-60+Math.random()*100)+"%";
+      b.style.animationDuration=(rapidez+Math.random()*rapidez*1.5)+"s";
+      b.style.animationDelay=(Math.random()*10)+"s";
+      contenedor.appendChild(b);
+    }
   }
+  sembrar(cont,60,6);
+  sembrar(document.getElementById("burbujas-cat"),40,3); /* más rápidas = más movidas */
 })();
 </script>
 </body>
