@@ -63,6 +63,36 @@ img{max-width:100%;display:block;}
   text-shadow:2px 2px 0 #062246, 0 4px 14px rgba(0,0,0,.6);
   margin-bottom:16px;animation:balanceo 3.5s ease-in-out infinite;
 }
+.busca-caja{
+  position:relative;z-index:2;
+  max-width:520px;margin:0 auto 16px;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.14);
+  border:2px solid rgba(255,255,255,.4);
+  border-radius:99px;padding:4px 8px 4px 18px;
+  backdrop-filter:blur(3px);
+  box-shadow:0 6px 20px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.25);
+  transition:box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+}
+.busca-caja:focus-within{border-color:var(--amarillo);box-shadow:0 0 0 3px rgba(255,212,0,.35), 0 8px 24px rgba(0,0,0,.4);transform:scale(1.02);}
+.busca-caja .lupa{font-size:18px;animation:latir 2.5s ease-in-out infinite;}
+.busca-caja input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:#fff;font:inherit;font-size:15px;font-weight:700;padding:10px 0;min-width:0;
+}
+.busca-caja input::placeholder{color:rgba(255,255,255,.75);font-weight:600;}
+.busca-limpiar{
+  border:none;background:var(--amarillo);color:#062246;
+  width:34px;height:34px;border-radius:50%;font-weight:900;font-size:15px;
+  cursor:pointer;display:none;flex-shrink:0;
+  transition:transform .12s ease;
+}
+.busca-limpiar:hover{transform:scale(1.12) rotate(90deg);}
+.sin-resultados{
+  position:relative;z-index:2;display:none;
+  text-align:center;color:var(--gris-claro);font-weight:700;
+  padding:40px 20px;font-size:16px;
+}
 .filtros{
   position:relative;z-index:2;
   display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
@@ -235,6 +265,11 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 <section class="categorias">
   <div class="burbujas-cat" id="burbujas-cat"></div>
   <h2>👑 Categorías</h2>
+  <div class="busca-caja">
+    <span class="lupa">🔍</span>
+    <input id="buscador" type="text" placeholder="Busca un producto… ej. audífonos" oninput="aplicarFiltros()" autocomplete="off">
+    <button class="busca-limpiar" id="busca-limpiar" onclick="limpiarBusqueda()" aria-label="Borrar búsqueda">✕</button>
+  </div>
   <div class="filtros">
     <button class="filtro activo" data-cat="todos" onclick="filtrar(this)">Todos</button>
     <button class="filtro" data-cat="calzado" onclick="filtrar(this)">👟 Calzado</button>
@@ -248,6 +283,7 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 <!-- ================= PRODUCTOS ================= -->
 <main class="panel">
   <div class="burbujas" id="burbujas"></div>
+  <p class="sin-resultados" id="sin-resultados">😕 No encontramos productos con esa búsqueda.<br>Prueba con otra palabra o cambia de categoría.</p>
   <div class="rejilla">
 
     <!-- ====== PRODUCTO 1 ====== -->
@@ -354,13 +390,33 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 </footer>
 
 <script>
+function normalizar(t){
+  return (t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+function aplicarFiltros(){
+  const btn=document.querySelector(".filtro.activo");
+  const cat=btn? btn.dataset.cat : "todos";
+  const q=normalizar(document.getElementById("buscador").value.trim());
+  document.getElementById("busca-limpiar").style.display = q? "block":"none";
+  let visibles=0;
+  document.querySelectorAll(".producto").forEach(p=>{
+    const pasaCat = (cat==="todos" || p.dataset.cat===cat);
+    const nombre = normalizar(p.querySelector(".nombre").textContent);
+    const pasaTexto = !q || nombre.includes(q);
+    const mostrar = pasaCat && pasaTexto;
+    p.classList.toggle("oculto", !mostrar);
+    if(mostrar) visibles++;
+  });
+  document.getElementById("sin-resultados").style.display = visibles? "none":"block";
+}
 function filtrar(btn){
   document.querySelectorAll(".filtro").forEach(b=>b.classList.remove("activo"));
   btn.classList.add("activo");
-  const cat=btn.dataset.cat;
-  document.querySelectorAll(".producto").forEach(p=>{
-    p.classList.toggle("oculto", cat!=="todos" && p.dataset.cat!==cat);
-  });
+  aplicarFiltros();
+}
+function limpiarBusqueda(){
+  document.getElementById("buscador").value="";
+  aplicarFiltros();
 }
 (function(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
