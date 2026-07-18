@@ -119,13 +119,24 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle at 30% 30%, rgba(255,212,0,.35), rgba(255,212,0,.05));
   animation:subir 12s linear infinite;bottom:-80px;
 }
+/* amarillas */
 .burbujas i:nth-child(1){left:6%;width:26px;height:26px;animation-duration:11s;}
 .burbujas i:nth-child(2){left:22%;width:14px;height:14px;animation-duration:14s;animation-delay:2s;}
-.burbujas i:nth-child(3){left:45%;width:34px;height:34px;animation-duration:16s;animation-delay:4s;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.30), rgba(56,214,107,.04));}
-.burbujas i:nth-child(4){left:68%;width:18px;height:18px;animation-duration:12s;animation-delay:1s;}
-.burbujas i:nth-child(5){left:84%;width:28px;height:28px;animation-duration:15s;animation-delay:6s;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.30), rgba(120,190,255,.04));}
 .burbujas i:nth-child(6){left:33%;width:12px;height:12px;animation-duration:10s;animation-delay:7s;}
-.burbujas i:nth-child(7){left:58%;width:22px;height:22px;animation-duration:13s;animation-delay:9s;background:radial-gradient(circle at 30% 30%, rgba(255,110,199,.28), rgba(255,110,199,.04));}
+.burbujas i:nth-child(4){left:68%;width:18px;height:18px;animation-duration:12s;animation-delay:1s;}
+.burbujas i:nth-child(8){left:14%;width:20px;height:20px;animation-duration:12s;animation-delay:4s;bottom:40%;}
+.burbujas i:nth-child(9){left:91%;width:15px;height:15px;animation-duration:10s;animation-delay:2s;bottom:65%;}
+/* verdes */
+.burbujas i:nth-child(3){left:45%;width:34px;height:34px;animation-duration:16s;animation-delay:4s;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.35), rgba(56,214,107,.05));}
+.burbujas i:nth-child(10){left:76%;width:16px;height:16px;animation-duration:11s;animation-delay:5s;bottom:55%;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.35), rgba(56,214,107,.05));}
+.burbujas i:nth-child(11){left:10%;width:24px;height:24px;animation-duration:13s;animation-delay:8s;bottom:75%;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.35), rgba(56,214,107,.05));}
+.burbujas i:nth-child(12){left:52%;width:13px;height:13px;animation-duration:9s;animation-delay:1s;bottom:30%;background:radial-gradient(circle at 30% 30%, rgba(56,214,107,.35), rgba(56,214,107,.05));}
+/* azules */
+.burbujas i:nth-child(5){left:84%;width:28px;height:28px;animation-duration:15s;animation-delay:6s;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.38), rgba(120,190,255,.05));}
+.burbujas i:nth-child(7){left:58%;width:22px;height:22px;animation-duration:13s;animation-delay:9s;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.38), rgba(120,190,255,.05));}
+.burbujas i:nth-child(13){left:28%;width:18px;height:18px;animation-duration:11s;animation-delay:3s;bottom:60%;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.38), rgba(120,190,255,.05));}
+.burbujas i:nth-child(14){left:64%;width:26px;height:26px;animation-duration:14s;animation-delay:6s;bottom:80%;background:radial-gradient(circle at 30% 30%, rgba(120,190,255,.38), rgba(120,190,255,.05));}
+.burbujas i:nth-child(15){left:40%;width:15px;height:15px;animation-duration:10s;animation-delay:5s;bottom:88%;}
 
 /* ================= PIE ================= */
 footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;background:#051524;}
@@ -139,7 +150,7 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 }
 @keyframes latir{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
 @keyframes brillar{0%,100%{filter:brightness(1) drop-shadow(0 0 0 rgba(255,212,0,0))}50%{filter:brightness(1.35) drop-shadow(0 0 8px rgba(255,212,0,.7))}}
-@keyframes subir{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(-105vh);opacity:0}}
+@keyframes subir{0%{transform:translateY(0);opacity:0}8%{opacity:1}80%{opacity:1}100%{transform:translateY(-90vh);opacity:0}}
 
 @media (max-width:640px){
   .panel{background-attachment:scroll;padding:34px 14px 54px;}
@@ -169,7 +180,7 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
 
 <!-- ================= PRODUCTOS ================= -->
 <main class="panel">
-  <div class="burbujas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="burbujas"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="rejilla">
 
     <!-- ====== PRODUCTO 1 ====== -->
