@@ -136,6 +136,12 @@ img{max-width:100%;display:block;}
   background:rgba(255,255,255,.10);border:1px solid var(--azul-borde);color:var(--gris-claro);
   padding:4px 12px;border-radius:99px;
 }
+.etqs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.etq-extra{
+  font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;
+  background:linear-gradient(180deg,var(--amarillo),var(--amarillo-osc));color:#062246;
+  padding:4px 10px;border-radius:99px;box-shadow:0 2px 8px rgba(255,212,0,.4);
+}
 .etq-cat.super{background:linear-gradient(180deg,#FF3B3B,#C81E1E);border-color:#FF6B6B;color:#fff;box-shadow:0 0 10px rgba(255,59,59,.55);}
 .producto.oculto{display:none;}
 
@@ -286,103 +292,143 @@ footer{padding:26px 16px;text-align:center;font-size:12.5px;color:#7E93AC;backgr
   <p class="sin-resultados" id="sin-resultados">😕 No encontramos productos con esa búsqueda.<br>Prueba con otra palabra o cambia de categoría.</p>
   <div class="rejilla">
 
-    <!-- ====== PRODUCTO 1 ====== -->
-    <article class="producto" data-cat="tecnologia">
-      <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>20%</span>
-      <div class="foto"><img src="producto-1.png" alt="Cámara Canon EOS R50"></div>
-      <h2 class="nombre">Cámara Canon EOS R50</h2>
-      <ul class="especs">
-        <li>24.2 MP de alta resolución</li>
-        <li>Grabación 4K Ultra HD</li>
-        <li>Conectividad Wi-Fi y Bluetooth</li>
-      </ul>
-      <span class="etq-cat">📱 Tecnología</span>
-      <div class="precios"><span class="precio-viejo">$18,999</span><span class="precio-nuevo">$15,199</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
-    </article>
-
-    <!-- ====== PRODUCTO 2 ====== -->
-    <article class="producto" data-cat="tecnologia">
-      <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>30%</span>
-      <div class="foto"><img src="producto-2.png" alt="Audífonos Sony WH-CH720N"></div>
-      <h2 class="nombre">Audífonos Sony WH-CH720N</h2>
-      <ul class="especs">
-        <li>Cancelación de ruido activa</li>
-        <li>Batería de hasta 35 horas</li>
-        <li>Sonido nítido y envolvente</li>
-      </ul>
-      <span class="etq-cat">📱 Tecnología</span>
-      <div class="precios"><span class="precio-viejo">$2,899</span><span class="precio-nuevo">$2,029</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
-    </article>
-
-    <!-- ====== PRODUCTO 3 ====== -->
-    <article class="producto" data-cat="calzado">
-      <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>25%</span>
-      <div class="foto"><img src="producto-3.png" alt="Tenis Nike Air Max 270"></div>
-      <h2 class="nombre">Tenis Nike Air Max 270</h2>
-      <ul class="especs">
-        <li>Diseño moderno y ligero</li>
-        <li>Máxima amortiguación</li>
-        <li>Ideales para uso diario</li>
-      </ul>
-      <span class="etq-cat">👟 Calzado</span>
-      <div class="precios"><span class="precio-viejo">$3,599</span><span class="precio-nuevo">$2,699</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
-    </article>
-
-    <!-- ====== PRODUCTO 4 ====== -->
-    <article class="producto" data-cat="cotidiano">
-      <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>15%</span>
-      <div class="foto"><img src="producto-4.png" alt="Funda para laptop 15.6 pulgadas"></div>
-      <h2 class="nombre">Funda para Laptop 15.6"</h2>
-      <ul class="especs">
-        <li>Material resistente al agua</li>
-        <li>Acolchado antishock</li>
-        <li>Diseño elegante y minimalista</li>
-      </ul>
-      <span class="etq-cat">🏠 Uso cotidiano</span>
-      <div class="precios"><span class="precio-viejo">$699</span><span class="precio-nuevo">$594</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
-    </article>
-
-    <!-- ====== PRODUCTO 5 ====== -->
-    <article class="producto" data-cat="tecnologia">
-      <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>20%</span>
-      <div class="foto"><img src="producto-5.png" alt="Smartwatch Amazfit Bip U Pro"></div>
-      <h2 class="nombre">Smartwatch Amazfit Bip U Pro</h2>
-      <ul class="especs">
-        <li>Medición de oxígeno en sangre</li>
-        <li>Más de 60 modos deportivos</li>
-        <li>Hasta 9 días de batería</li>
-      </ul>
-      <span class="etq-cat">📱 Tecnología</span>
-      <div class="precios"><span class="precio-viejo">$1,999</span><span class="precio-nuevo">$1,599</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
-    </article>
-
-    <!-- ====== PRODUCTO 6 ====== -->
     <article class="producto" data-cat="super">
       <span class="corona">👑</span>
-      <span class="insignia"><small>AHORRA</small>35%</span>
-      <div class="foto"><img src="producto-6.png" alt="Audífonos JBL Tune 130NC"></div>
-      <h2 class="nombre">Audífonos JBL Tune 130NC</h2>
+      <span class="insignia"><small>AHORRA</small>46%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_894266-MLA94701476916_102025-F.webp" alt="Audífonos Soundcore P30i con cancelación de ruido"></div>
+      <h2 class="nombre">Audífonos Soundcore P30i</h2>
       <ul class="especs">
-        <li>Cancelación de ruido activa</li>
-        <li>Sonido JBL Pure Bass</li>
-        <li>Hasta 40 horas de batería</li>
+        <li>Cancelación de ruido adaptativa de 42 dB</li>
+        <li>Hasta 45 horas de reproducción con estuche</li>
+        <li>Modo transparencia para oír tu entorno</li>
+        <li>Micrófonos con IA: llamadas nítidas</li>
+        <li>Drivers de 10 mm con graves potentes</li>
       </ul>
-      <span class="etq-cat super">🔥 Super oferta</span>
-      <div class="precios"><span class="precio-viejo">$1,699</span><span class="precio-nuevo">$1,099</span></div>
-      <a class="btn-oferta" href="#" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+      <div class="etqs">
+        <span class="etq-cat super">🔥 Super oferta</span>
+        <span class="etq-extra">⭐ Premium</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$999</span><span class="precio-nuevo">$538</span></div>
+      <a class="btn-oferta" href="https://meli.la/2EL8b31" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="tecnologia">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>35%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_905895-MLA107970856443_032026-F.webp" alt="Audífonos inalámbricos Huawei FreeBuds SE 2 blancos"></div>
+      <h2 class="nombre">Huawei FreeBuds SE 2</h2>
+      <ul class="especs">
+        <li>True Wireless: libertad total, sin cables</li>
+        <li>Bluetooth 5.3 estable y sin cortes</li>
+        <li>Hasta 40 h de autonomía con estuche</li>
+        <li>Ligeros y cómodos todo el día</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">📱 Tecnología</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$599</span><span class="precio-nuevo">$387.50</span></div>
+      <a class="btn-oferta" href="https://meli.la/1S9N2FU" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="tecnologia">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>37%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_796847-MLA99943144089_112025-F.webp" alt="Laptop ASUS Vivobook 14 con Intel Core i5"></div>
+      <h2 class="nombre">Laptop ASUS Vivobook 14 i5</h2>
+      <ul class="especs">
+        <li>Intel Core i5-1334U veloz para todo</li>
+        <li>24 GB de RAM: multitarea sin trabas</li>
+        <li>SSD de 512 GB: enciende en segundos</li>
+        <li>Pantalla 14" Full HD nítida</li>
+        <li>Windows 11 listo para usar</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">📱 Tecnología</span>
+        <span class="etq-extra">⭐ Más vendido</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$16,999</span><span class="precio-nuevo">$10,599</span></div>
+      <a class="btn-oferta" href="https://meli.la/1Vzoee4" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="tecnologia">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>41%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_800983-MLA99451636182_112025-F.webp" alt="Intercomunicador con audífonos para casco de motocicleta JZAQ X3"></div>
+      <h2 class="nombre">Intercomunicador para Casco JZAQ X3</h2>
+      <ul class="especs">
+        <li>Comunicación casco a casco hasta 10 m</li>
+        <li>Bluetooth 6 de última generación</li>
+        <li>Resistente al agua IPX6: aguanta lluvia</li>
+        <li>Ideal para rodadas en grupo</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">📱 Tecnología</span>
+        <span class="etq-extra">⭐ Más vendido</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$385.22</span><span class="precio-nuevo">$223.43</span></div>
+      <a class="btn-oferta" href="https://meli.la/2YUt3Gv" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="tecnologia">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>47%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_796025-CBT90805872205_082025-F-audifonos-inalambricos-lenovo-bluetooth-comodos-color-negro.webp" alt="Audífonos inalámbricos Lenovo Bluetooth color negro"></div>
+      <h2 class="nombre">Audífonos Lenovo Bluetooth</h2>
+      <ul class="especs">
+        <li>Bluetooth 5.3 con conexión estable</li>
+        <li>Sonido espacial envolvente</li>
+        <li>Hasta 24 h de autonomía</li>
+        <li>Ajuste cómodo para uso prolongado</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">📱 Tecnología</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$394.82</span><span class="precio-nuevo">$206.67</span></div>
+      <a class="btn-oferta" href="https://meli.la/2XiSCN9" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="tecnologia">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>22%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_858464-MLA95641994484_102025-F.webp" alt="Laptop HP 245 con AMD Ryzen 3"></div>
+      <h2 class="nombre">Laptop HP 245 Ryzen 3</h2>
+      <ul class="especs">
+        <li>AMD Ryzen 3 7330U eficiente y ágil</li>
+        <li>16 GB de RAM: multitarea fluida</li>
+        <li>SSD de 512 GB rápido y silencioso</li>
+        <li>Pantalla de 14" ideal para trabajo</li>
+        <li>Windows 11 incluido</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">📱 Tecnología</span>
+        <span class="etq-extra">⭐ Más vendido</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$10,999</span><span class="precio-nuevo">$8,559</span></div>
+      <a class="btn-oferta" href="https://meli.la/24sXKNv" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
+    </article>
+
+    <article class="producto" data-cat="cotidiano">
+      <span class="corona">👑</span>
+      <span class="insignia"><small>AHORRA</small>52%</span>
+      <div class="foto"><img src="https://http2.mlstatic.com/D_NQ_NP_2X_834785-MLA106872425578_022026-F.webp" alt="Ventilador de techo de 42 pulgadas con luz y control remoto"></div>
+      <h2 class="nombre">Ventilador de Techo con Luz 42"</h2>
+      <ul class="especs">
+        <li>Luz LED y control remoto incluidos</li>
+        <li>Motor DC silencioso y ahorrador de luz</li>
+        <li>6 velocidades y giro reversible</li>
+        <li>42" de cobertura para salas amplias</li>
+        <li>Todo se controla desde el sillón</li>
+      </ul>
+      <div class="etqs">
+        <span class="etq-cat">🏠 Uso cotidiano</span>
+        <span class="etq-extra">⭐ Más vendido</span>
+      </div>
+      <div class="precios"><span class="precio-viejo">$2,258.69</span><span class="precio-nuevo">$1,081</span></div>
+      <a class="btn-oferta" href="https://meli.la/2c2WFP5" target="_blank" rel="noopener">Ingresa a este link<span>y obtén el producto con descuento</span></a>
     </article>
 
   </div>
+
 </main>
 
 <footer>
